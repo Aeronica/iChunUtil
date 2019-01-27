@@ -7,6 +7,7 @@ import me.ichun.mods.ichunutil.client.gui.window.element.Element;
 import me.ichun.mods.ichunutil.common.core.config.ConfigBase;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class WindowCats extends Window
@@ -57,7 +58,7 @@ public class WindowCats extends Window
                         configs.selectedIdentifier = "";
                         configs.trees.clear();
 
-                        for(Map.Entry<ConfigBase.CategoryInfo, ArrayList<ConfigBase.PropInfo>> e : selectedConfig.categories.entrySet())
+                        for(Map.Entry<ConfigBase.CategoryInfo, List<ConfigBase.PropInfo>> e : selectedConfig.categories.entrySet())
                         {
                             configs.createTree(null, e.getKey(), 13, 0, false, false);
                         }

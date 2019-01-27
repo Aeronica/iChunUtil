@@ -29,16 +29,16 @@ public abstract class ConfigBase implements Comparable<ConfigBase>, IIdentifiabl
 
     private boolean setup;
 
-    public TreeMap<CategoryInfo, ArrayList<PropInfo>> categories = new TreeMap<>(Ordering.natural());
+    public NavigableMap<CategoryInfo, List<PropInfo>> categories = new TreeMap<>(Ordering.natural());
 
-    public HashMap<Field, Object> session = new HashMap<>();
-    public HashMap<Field, Object> configScreen = new HashMap<>();
+    public Map<Field, Object> session = new HashMap<>();
+    public Map<Field, Object> configScreen = new HashMap<>();
 
-    public HashSet<Field> requiresRestart = new HashSet<>();
-    public HashSet<Field> sessionProp = new HashSet<>();
+    public Set<Field> requiresRestart = new HashSet<>();
+    public Set<Field> sessionProp = new HashSet<>();
 
     //This stores the list of properties to reveal/unhide in the config screen/file
-    public HashSet<String> propsToReveal = new HashSet<>();
+    public Set<String> propsToReveal = new HashSet<>();
 
     public ConfigBase(File file)
     {
@@ -108,8 +108,8 @@ public abstract class ConfigBase implements Comparable<ConfigBase>, IIdentifiabl
         }
         Class clz = field.getType();
         CategoryInfo info = new CategoryInfo(clz.equals(KeyBind.class) ? "keybind" : propInfo.module().isEmpty() ? propInfo.category() : "module." + propInfo.module());
-        ArrayList<ConfigBase.PropInfo> fields = null;
-        for(Map.Entry<CategoryInfo, ArrayList<ConfigBase.PropInfo>> e : categories.entrySet())
+        List<ConfigBase.PropInfo> fields = null;
+        for(Map.Entry<CategoryInfo, List<ConfigBase.PropInfo>> e : categories.entrySet())
         {
             CategoryInfo inf = e.getKey();
             if(inf.category.equals(info.category))
@@ -308,7 +308,7 @@ public abstract class ConfigBase implements Comparable<ConfigBase>, IIdentifiabl
 
     public void setCategoryComments()
     {
-        for(Map.Entry<CategoryInfo, ArrayList<ConfigBase.PropInfo>> e : categories.entrySet())
+        for(Map.Entry<CategoryInfo, List<ConfigBase.PropInfo>> e : categories.entrySet())
         {
             CategoryInfo info = e.getKey();
             String cat = info.category;
